@@ -7,6 +7,7 @@
     "build-and-start": "rm -rf dist && tsc && node ./dist/index.js",
     "check-types": "tsc --noEmit",
     "dev": "rm -rf dist && tsc -w",
+    "prepare": "husky install",
     "start": "node ./dist/index.js",
     "test": "jest"
   },
@@ -20,6 +21,7 @@
     "@babel/preset-typescript": "^7.16.7",
     "@types/jest": "27.4.1",
     "babel-jest": "^27.5.1",
+    "husky": "7.0.4",
     "jest": "27.5.1",
     "typescript": "4.6.3"
   }
