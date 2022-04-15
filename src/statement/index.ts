@@ -27,11 +27,11 @@ function renderHtml(data: any) {
   result += "    <th>cost</th>\n"
   result += "  </tr>\n"
   for (const perf of data.performances) {
-    result += "    <tr>\n"
-    result += `      <td>${perf.play.name}</td>\n`
-    result += `      <td>${formatAsUsd(perf.amount)}</td>\n`
-    result += `      <td>${perf.audience}</td>\n`
-    result += "    </tr>\n"
+    result += "  <tr>\n"
+    result += `    <td>${perf.play.name}</td>\n`
+    result += `    <td>${formatAsUsd(perf.amount)}</td>\n`
+    result += `    <td>${perf.audience}</td>\n`
+    result += "  </tr>\n"
   }
   result += "</table>\n"
   result += `<p>Amount owed is <em>${formatAsUsd(data.totalAmount)}</em>.</p>\n`
