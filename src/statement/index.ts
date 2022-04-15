@@ -1,10 +1,14 @@
 function statement(invoice: any, plays: any) {
-  let result = `Statement for ${invoice.customer}\n`
-  for (let perf of invoice.performances) {
-    // print line for this order
-    result += `  ${playFor(perf).name}: ${formatAsUSD(amountFor(perf))} (${
-      perf.audience
-    } seats)\n`
+  const statementData: any = {}
+  statementData.customer = invoice.customer
+  statementData.performances = invoice.performances
+  return renderPlainText(statementData, plays)
+}
+
+function renderPlainText(data: any, plays: any) {
+  let result = `Statement for ${data.customer}\n`
+  for (const perf of data.performances) {
+    result += `  ${playFor(perf).name}: ${formatAsUSD(amountFor(perf))} (${perf.audience} seats)\n`
   }
   result += `Amount owed is ${formatAsUSD(totalAmount())}.\n`
   result += `You earned ${totalVolumeCredits()} credits.\n`
@@ -39,8 +43,7 @@ function statement(invoice: any, plays: any) {
   function volumeCreditsFor(aPerformance: any): number {
     let result = 0
     result += Math.max(aPerformance.audience - 30, 0)
-    if ("comedy" === playFor(aPerformance).type)
-      result += Math.floor(aPerformance.audience / 5)
+    if ("comedy" === playFor(aPerformance).type) result += Math.floor(aPerformance.audience / 5)
     return result
   }
 
@@ -54,7 +57,7 @@ function statement(invoice: any, plays: any) {
 
   function totalVolumeCredits() {
     let volumeCredits = 0
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
       volumeCredits += volumeCreditsFor(perf)
     }
     return volumeCredits
@@ -62,11 +65,10 @@ function statement(invoice: any, plays: any) {
 
   function totalAmount() {
     let result = 0
-    for (let perf of invoice.performances) {
+    for (let perf of data.performances) {
       result += amountFor(perf)
     }
     return result
   }
 }
-
 export default statement
