@@ -1,14 +1,12 @@
 function statement(invoice: any, plays: any) {
-  let totalAmount = 0
   let result = `Statement for ${invoice.customer}\n`
   for (let perf of invoice.performances) {
     // print line for this order
     result += `  ${playFor(perf).name}: ${formatAsUSD(amountFor(perf))} (${
       perf.audience
     } seats)\n`
-    totalAmount += amountFor(perf)
   }
-  result += `Amount owed is ${formatAsUSD(totalAmount)}.\n`
+  result += `Amount owed is ${formatAsUSD(totalAmount())}.\n`
   result += `You earned ${totalVolumeCredits()} credits.\n`
   return result
 
@@ -60,6 +58,14 @@ function statement(invoice: any, plays: any) {
       volumeCredits += volumeCreditsFor(perf)
     }
     return volumeCredits
+  }
+
+  function totalAmount() {
+    let result = 0
+    for (let perf of invoice.performances) {
+      result += amountFor(perf)
+    }
+    return result
   }
 }
 
