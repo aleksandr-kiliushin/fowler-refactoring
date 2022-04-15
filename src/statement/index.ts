@@ -8,12 +8,8 @@ function statement(invoice: any, plays: any) {
     } seats)\n`
     totalAmount += amountFor(perf)
   }
-  let volumeCredits = 0
-  for (let perf of invoice.performances) {
-    volumeCredits += volumeCreditsFor(perf)
-  }
   result += `Amount owed is ${formatAsUSD(totalAmount)}.\n`
-  result += `You earned ${volumeCredits} credits.\n`
+  result += `You earned ${totalVolumeCredits()} credits.\n`
   return result
 
   function amountFor(aPerformance: any): number {
@@ -56,6 +52,14 @@ function statement(invoice: any, plays: any) {
       currency: "USD",
       minimumFractionDigits: 2,
     }).format(aNumber / 100)
+  }
+
+  function totalVolumeCredits() {
+    let volumeCredits = 0
+    for (let perf of invoice.performances) {
+      volumeCredits += volumeCreditsFor(perf)
+    }
+    return volumeCredits
   }
 }
 
