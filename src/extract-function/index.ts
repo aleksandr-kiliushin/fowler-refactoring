@@ -9,9 +9,7 @@ type Invoice = {
 const printOwing = (invoice: Invoice): void => {
   let outstanding = 0
 
-  console.log("***********************")
-  console.log("**** Customer owes ****")
-  console.log("***********************")
+  printBanner()
 
   // Calculate outstanding.
   for (const o of invoice.orders) {
@@ -26,6 +24,12 @@ const printOwing = (invoice: Invoice): void => {
   console.log(`Name: ${invoice.customer}.`)
   console.log(`Amount: ${outstanding}.`)
   console.log(`Due: ${invoice.dueDate.toLocaleDateString()}.`)
+
+  function printBanner() {
+    console.log("***********************")
+    console.log("**** Customer owes ****")
+    console.log("***********************")
+  }
 }
 
 export default printOwing
