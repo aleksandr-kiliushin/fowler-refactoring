@@ -27,20 +27,16 @@ const printDetails = ({ invoice, outstanding }: { invoice: Invoice; outstanding:
   console.log(`Due: ${invoice.dueDate.toLocaleDateString()}.`)
 }
 
-const enrichInvoiceWithDueDate = ({ invoice }: { invoice: Invoice }): Invoice => {
+const calculateDueDate = (): Date => {
   const today = new Date()
-  const dueDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30)
-  return { ...invoice, dueDate }
+  return new Date(today.getFullYear(), today.getMonth(), today.getDate() + 30)
 }
 
 const printOwing = (invoice: Invoice): void => {
   printBanner()
-
   const outstanding = calculateOutstanding({ invoice })
-
-  const invoiceWithDueDate = enrichInvoiceWithDueDate({ invoice })
-
-  printDetails({ invoice: invoiceWithDueDate, outstanding })
+  invoice.dueDate = calculateDueDate()
+  printDetails({ invoice, outstanding })
 }
 
 export default printOwing
