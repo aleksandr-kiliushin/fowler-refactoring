@@ -12,6 +12,14 @@ const printBanner = () => {
   console.log("***********************")
 }
 
+const calculateOutstanding = ({ invoice }: { invoice: Invoice }) => {
+  let result = 0
+  for (const o of invoice.orders) {
+    result += o.amount
+  }
+  return result
+}
+
 const printDetails = ({ invoice, outstanding }: { invoice: Invoice; outstanding: number }) => {
   console.log(`Name: ${invoice.customer}.`)
   console.log(`Amount: ${outstanding}.`)
@@ -26,14 +34,9 @@ const enrichInvoiceWithDueDate = ({ invoice }: { invoice: Invoice }): Invoice =>
 }
 
 const printOwing = (invoice: Invoice): void => {
-  let outstanding = 0
-
   printBanner()
 
-  // Calculate outstanding.
-  for (const o of invoice.orders) {
-    outstanding += o.amount
-  }
+  const outstanding = calculateOutstanding({ invoice })
 
   const invoiceWithDueDate = enrichInvoiceWithDueDate({ invoice })
 
