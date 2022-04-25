@@ -1,6 +1,6 @@
 import reportLines, { Customer, Line } from "./index"
 
-describe("getDriverRating work correctly", () => {
+describe("reportLines works correctly.", () => {
   test.each<{
     customer: Customer
     outputLines: Line[]

@@ -1,6 +1,6 @@
 import getDriverRating from "./index"
 
-describe("getDriverRating work correctly", () => {
+describe("getDriverRating works correctly.", () => {
   test.each([
     { numberOfLateDeliveries: 2, driverRating: 1 },
     { numberOfLateDeliveries: 4, driverRating: 1 },
