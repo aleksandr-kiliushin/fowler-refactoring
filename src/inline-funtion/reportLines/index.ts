@@ -5,14 +5,10 @@ export type Customer = {
 
 export type Line = [keyof Customer, string]
 
-const gatherCustomerData = (out: Line[], aCustomer: Customer) => {
-  out.push(["location", aCustomer.location])
-  out.push(["name", aCustomer.name])
-}
-
 const reportLines = (aCustomer: Customer) => {
   const lines: Line[] = []
-  gatherCustomerData(lines, aCustomer)
+  lines.push(["location", aCustomer.location])
+  lines.push(["name", aCustomer.name])
   return lines
 }
 
