@@ -1,11 +1,24 @@
 class Book {
-  private _reservations: string[]
+  private _reservations: { customerName: string; hasPriority: boolean }[]
+
   constructor() {
     this._reservations = []
   }
-  addReservation(customer: string) {
-    this._reservations.push(customer)
+
+  addReservation(aCustomer: string) {
+    this.NEW_addReservation({ customerName: aCustomer, hasPriority: false })
   }
+
+  NEW_addReservation({
+    customerName,
+    hasPriority,
+  }: {
+    customerName: string
+    hasPriority: boolean
+  }) {
+    this._reservations.push({ customerName, hasPriority })
+  }
+
   get reservations() {
     return this._reservations
   }
