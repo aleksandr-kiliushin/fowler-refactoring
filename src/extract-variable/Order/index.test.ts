@@ -24,5 +24,4 @@ describe("calculatePrice works correctly.", () => {
   ])("For a driver with $inputNumber late deliveries.", ({ calculatedPrice, order }) => {
     expect(new Order(order).price).toEqual(calculatedPrice)
   })
-  test("For a driver with 0 late deliveries.", () => {})
 })
