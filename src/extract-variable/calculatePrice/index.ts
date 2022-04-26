@@ -4,10 +4,12 @@ export type Order = {
 }
 
 const calculatePrice = ({ anOrder }: { anOrder: Order }): number => {
+  const { itemPrice, quantity } = anOrder
+  // Price is: base price - quantity discount + shipping.
   return (
-    anOrder.quantity * anOrder.itemPrice -
-    Math.max(0, anOrder.quantity - 500) * anOrder.itemPrice * 0.05 +
-    Math.min(anOrder.quantity * anOrder.itemPrice * 0.1, 100)
+    quantity * itemPrice -
+    Math.max(0, quantity - 500) * itemPrice * 0.05 +
+    Math.min(quantity * itemPrice * 0.1, 100)
   )
 }
 
