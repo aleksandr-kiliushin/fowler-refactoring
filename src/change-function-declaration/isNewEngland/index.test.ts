@@ -1,6 +1,6 @@
 import isNewEngland, { Customer } from "./index"
 
-describe("calculatePrice works correctly.", () => {
+describe("isNewEngland works correctly.", () => {
   test.each<{
     result: boolean
     state: Customer["address"]["state"]
