@@ -2,22 +2,22 @@ import isNewEngland, { Customer } from "./index"
 
 describe("calculatePrice works correctly.", () => {
   test.each<{
-    aCustomer: Customer
     result: boolean
+    state: Customer["address"]["state"]
   }>([
     {
-      aCustomer: { address: { state: "MA" } },
       result: true,
+      state: "MA",
     },
     {
-      aCustomer: { address: { state: "VT" } },
       result: true,
+      state: "VT",
     },
     {
-      aCustomer: { address: { state: "NY" } },
       result: false,
+      state: "NY",
     },
-  ])("For a driver with $inputNumber late deliveries.", ({ aCustomer, result }) => {
-    expect(isNewEngland(aCustomer)).toEqual(result)
+  ])("For a driver with $inputNumber late deliveries.", ({ result, state }) => {
+    expect(isNewEngland(state)).toEqual(result)
   })
 })
