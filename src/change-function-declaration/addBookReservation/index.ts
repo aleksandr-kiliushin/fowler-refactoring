@@ -5,17 +5,7 @@ class Book {
     this._reservations = []
   }
 
-  addReservation(aCustomer: string) {
-    this.NEW_addReservation({ customerName: aCustomer, hasPriority: false })
-  }
-
-  NEW_addReservation({
-    customerName,
-    hasPriority,
-  }: {
-    customerName: string
-    hasPriority: boolean
-  }) {
+  addReservation({ customerName, hasPriority }: { customerName: string; hasPriority: boolean }) {
     this._reservations.push({ customerName, hasPriority })
   }
 
@@ -25,20 +15,20 @@ class Book {
 }
 
 const book1 = new Book()
-book1.addReservation("Peter")
-book1.addReservation("John")
-book1.addReservation("Petty")
+book1.addReservation({ customerName: "Peter", hasPriority: true })
+book1.addReservation({ customerName: "John", hasPriority: false })
+book1.addReservation({ customerName: "Petty", hasPriority: false })
 
 const book2 = new Book()
-book2.addReservation("Anna")
-book2.addReservation("Julia")
-book2.addReservation("Rebecca")
-book2.addReservation("Peter")
-book2.addReservation("Leo")
+book2.addReservation({ customerName: "Anna", hasPriority: false })
+book2.addReservation({ customerName: "Julia", hasPriority: true })
+book2.addReservation({ customerName: "Rebecca", hasPriority: true })
+book2.addReservation({ customerName: "Peter", hasPriority: false })
+book2.addReservation({ customerName: "Leo", hasPriority: false })
 
 const book3 = new Book()
-book3.addReservation("Judi")
-book3.addReservation("Claudia")
-book3.addReservation("Suzan")
+book3.addReservation({ customerName: "Judi", hasPriority: false })
+book3.addReservation({ customerName: "Claudia", hasPriority: false })
+book3.addReservation({ customerName: "Suzan", hasPriority: true })
 
 export default Book
