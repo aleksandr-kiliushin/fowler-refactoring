@@ -3,8 +3,11 @@ import { getDefaultOwner, setDefaultOwner } from "./index"
 describe("defaultOwner is returned and modified properly.", () => {
   test("Gets and mutates a default owner correctly.", () => {
     const defaultOwner = getDefaultOwner()
-    expect(defaultOwner).toEqual({ name: "Martin", surname: "Fowler" })
-    defaultOwner.surname = "Beck"
-    expect(defaultOwner).toEqual({ name: "Martin", surname: "Beck" })
+    expect(defaultOwner.name).toEqual("Martin")
+    expect(defaultOwner.surname).toEqual("Fowler")
+    expect(() => {
+      defaultOwner.surname = "Beck"
+    }).toThrowError("Can't set read-only `name` value.")
+    expect(defaultOwner.surname).toEqual("Fowler")
   })
 })
