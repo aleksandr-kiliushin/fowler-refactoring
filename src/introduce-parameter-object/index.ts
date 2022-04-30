@@ -19,10 +19,13 @@ export class NumberRange {
   get max() {
     return this._data.max
   }
+  includes(aNumber: number) {
+    return this.min < aNumber && aNumber < this.max
+  }
 }
 
 const findReadingOutsideRange = (station: Station, range: NumberRange) => {
-  return station.readings.filter(({ temp }) => temp < range.min || temp > range.max)
+  return station.readings.filter(({ temp }) => !range.includes(temp))
 }
 
 export default findReadingOutsideRange
