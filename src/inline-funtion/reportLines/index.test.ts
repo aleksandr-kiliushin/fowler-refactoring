@@ -29,5 +29,4 @@ describe("reportLines works correctly.", () => {
   ])("For a driver with $inputNumber late deliveries.", ({ customer, outputLines }) => {
     expect(reportLines(customer)).toEqual(outputLines)
   })
-  test("For a driver with 0 late deliveries.", () => {})
 })
