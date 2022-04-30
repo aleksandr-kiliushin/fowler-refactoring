@@ -1,4 +1,4 @@
-import findReadingOutsideRange, { OperatingPlan, Station } from "./index"
+import findReadingOutsideRange, { NumberRange, OperatingPlan, Station } from "./index"
 
 describe("findReadingOutsideRange works correctly", () => {
   test.each<{
@@ -27,12 +27,7 @@ describe("findReadingOutsideRange works correctly", () => {
       ],
     },
   ])("Finds outside templs correctly.", ({ operatingPlan, station, tempsOutsideRange }) => {
-    expect(
-      findReadingOutsideRange(
-        station,
-        operatingPlan.temperatureFloor,
-        operatingPlan.temperatureCeiling
-      )
-    ).toEqual(tempsOutsideRange)
+    const range = new NumberRange(operatingPlan.temperatureFloor, operatingPlan.temperatureCeiling)
+    expect(findReadingOutsideRange(station, range)).toEqual(tempsOutsideRange)
   })
 })

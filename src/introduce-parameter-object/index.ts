@@ -8,12 +8,21 @@ export type OperatingPlan = {
   temperatureCeiling: number
 }
 
-const findReadingOutsideRange = (
-  station: Station,
-  min: OperatingPlan["temperatureFloor"],
-  max: OperatingPlan["temperatureCeiling"]
-) => {
-  return station.readings.filter(({ temp }) => temp < min || temp > max)
+export class NumberRange {
+  private _data: { min: number; max: number }
+  constructor(min: number, max: number) {
+    this._data = { min, max }
+  }
+  get min() {
+    return this._data.min
+  }
+  get max() {
+    return this._data.max
+  }
+}
+
+const findReadingOutsideRange = (station: Station, range: NumberRange) => {
+  return station.readings.filter(({ temp }) => temp < range.min || temp > range.max)
 }
 
 export default findReadingOutsideRange
