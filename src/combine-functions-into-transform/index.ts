@@ -1,23 +1,28 @@
-export type IUser = {
-  balance: number
+export type User = {
   brothers: number[]
-  isActive: boolean
   name: string
   sisters: number[]
 }
 
-const hasUserSiblings = ({ aUser }: { aUser: IUser }) => {
+export interface EnrichedUser extends User {
+  hasSiblings: boolean
+  siblingsCount: number
+}
+
+const getHasUserSiblings = ({ aUser }: { aUser: User }) => {
   return aUser.brothers.length + aUser.sisters.length > 0
 }
 
-const countUserSiblings = ({ aUser }: { aUser: IUser }) => {
+const countUserSiblings = ({ aUser }: { aUser: User }) => {
   return aUser.brothers.length + aUser.sisters.length
 }
 
-const stringifyUserInfo = ({ aUser }: { aUser: IUser }) => {
-  return `User ${aUser.name} has ${
-    hasUserSiblings({ aUser }) ? countUserSiblings({ aUser }) : "no"
-  } siblings.`
+const enrichUserData = ({ aUser }: { aUser: User }): EnrichedUser => {
+  return {
+    ...aUser,
+    hasSiblings: getHasUserSiblings({ aUser }),
+    siblingsCount: countUserSiblings({ aUser }),
+  }
 }
 
-export default stringifyUserInfo
+export default enrichUserData

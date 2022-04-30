@@ -1,16 +1,28 @@
-import stringifyUserInfo, { IUser } from "./index"
+import enrichUserData, { EnrichedUser, User } from "./index"
 
 describe("User info is stringified correctly", () => {
-  test.each<{ aUser: IUser; stringifiedUser: string }>([
+  test.each<{ aUser: User; anEnrichedUser: EnrichedUser }>([
     {
-      aUser: { balance: 100, brothers: [123, 445, 5], isActive: true, name: "Carl", sisters: [] },
-      stringifiedUser: "User Carl has 3 siblings.",
+      aUser: { brothers: [123, 445, 5], name: "Carl", sisters: [] },
+      anEnrichedUser: {
+        brothers: [123, 445, 5],
+        name: "Carl",
+        sisters: [],
+        hasSiblings: true,
+        siblingsCount: 3,
+      },
     },
     {
-      aUser: { balance: 100, brothers: [], isActive: false, name: "Carl", sisters: [] },
-      stringifiedUser: "User Carl has no siblings.",
+      aUser: { brothers: [], name: "Carl", sisters: [] },
+      anEnrichedUser: {
+        brothers: [],
+        name: "Carl",
+        sisters: [],
+        hasSiblings: false,
+        siblingsCount: 0,
+      },
     },
-  ])("$name user.", ({ aUser, stringifiedUser }) => {
-    expect(stringifyUserInfo({ aUser })).toEqual(stringifiedUser)
+  ])("$name user.", ({ aUser, anEnrichedUser }) => {
+    expect(enrichUserData({ aUser })).toEqual(anEnrichedUser)
   })
 })
