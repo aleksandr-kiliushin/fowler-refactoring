@@ -1,4 +1,4 @@
-import produce from "immer"
+import produce, { Immutable } from "immer"
 
 type Customer = {
   id: number
@@ -32,7 +32,7 @@ class Customers {
   constructor(data: ICustomers) {
     this.#data = data
   }
-  get rawData() {
+  get rawData(): Immutable<ICustomers> {
     return produce(this.#data, () => {})
   }
   getUsage({
