@@ -1,4 +1,4 @@
-import R from "ramda"
+import produce from "immer"
 
 type Customer = {
   id: number
@@ -33,7 +33,7 @@ class Customers {
     this._data = data
   }
   get rawData() {
-    return R.clone(this._data)
+    return produce(this._data, () => {})
   }
   getUsage({
     customerId,
