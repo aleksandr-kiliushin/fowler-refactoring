@@ -54,4 +54,14 @@ class Person {
   }
 }
 
-export { Course, Person }
+const aCourse = new Course({ isAdvanced: false, name: "React" })
+
+export const getCourse = (): Course => {
+  return aCourse
+}
+
+const aPerson = new Person({ courses: [], name: "Joe" })
+
+export const getPerson = (): Person => {
+  return aPerson
+}
