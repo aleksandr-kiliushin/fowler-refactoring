@@ -5,8 +5,9 @@ describe("Customers", () => {
     expect(getCustomers().getUsage({ customerId: 1920, month: 1, year: 2016 })).toEqual(50)
     getCustomers().setUsage({ amount: 58, customerId: 1920, month: 1, year: 2016 })
 
-    // Throws an error because a proxy immutable object is returned by `rawData` getter.
-    // getCustomers().rawData[1920].usages[2016][1] = 58
+    expect(() => {
+      getCustomers().rawData[1920].usages[2016][1] = 58
+    }).toThrowError()
 
     expect(getCustomers().getUsage({ customerId: 1920, month: 1, year: 2016 })).toEqual(58)
 
