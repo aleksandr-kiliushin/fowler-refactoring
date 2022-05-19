@@ -1,3 +1,5 @@
+import R from "ramda"
+
 import { getCourse, getPerson, ICourse, IPerson } from "./index"
 
 describe("Person and Course.", () => {
@@ -25,10 +27,6 @@ describe("Person and Course.", () => {
     getPerson().rawData.courses = [{ isAdvanced: true, name: "JavaScript" }]
     expect(getPerson().courses).toEqual<IPerson["courses"]>([])
 
-    expect(() => {
-      getPerson().courses = [{ isAdvanced: true, name: "JavaScript" }]
-    }).toThrowError()
-
     // Does not have an effect because we mutate a copy.
     getPerson().courses.push({ isAdvanced: true, name: "JavaScript" })
     expect(getPerson().courses).toEqual<IPerson["courses"]>([])
@@ -43,5 +41,20 @@ describe("Person and Course.", () => {
 
     getPerson().removeCourse({ aCourseName: "React" })
     expect(getPerson().courses).toEqual<IPerson["courses"]>([{ isAdvanced: true, name: "Angular" }])
+
+    const someCourses: IPerson["courses"] = [
+      { isAdvanced: false, name: "VueJS" },
+      { isAdvanced: true, name: "NodeJS" },
+    ]
+    getPerson().courses = someCourses
+    expect(getPerson().courses).toEqual<IPerson["courses"]>([
+      { isAdvanced: false, name: "VueJS" },
+      { isAdvanced: true, name: "NodeJS" },
+    ])
+    someCourses[0] = { isAdvanced: true, name: "ExpressJS" }
+    expect(getPerson().courses).toEqual<IPerson["courses"]>([
+      { isAdvanced: false, name: "VueJS" },
+      { isAdvanced: true, name: "NodeJS" },
+    ])
   })
 })

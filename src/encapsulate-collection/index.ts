@@ -46,6 +46,9 @@ class Person {
   get name() {
     return this.#data.name
   }
+  set courses(newCourses) {
+    this.#data.courses = R.clone(newCourses)
+  }
   addCourse(aCourse: ICourse) {
     this.#data.courses.push(aCourse)
   }
