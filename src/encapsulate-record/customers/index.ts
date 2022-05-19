@@ -28,12 +28,12 @@ const rawCustomers: ICustomers = {
 }
 
 class Customers {
-  #data: ICustomers
+  private _data: ICustomers
   constructor(data: ICustomers) {
-    this.#data = data
+    this._data = data
   }
   get rawData() {
-    return R.clone(this.#data)
+    return R.clone(this._data)
   }
   getUsage({
     customerId,
@@ -44,7 +44,7 @@ class Customers {
     month: number
     year: number
   }) {
-    return this.#data[customerId].usages[year][month]
+    return this._data[customerId].usages[year][month]
   }
   setUsage({
     amount,
@@ -57,7 +57,7 @@ class Customers {
     month: number
     year: number
   }) {
-    this.#data[customerId].usages[year][month] = amount
+    this._data[customerId].usages[year][month] = amount
   }
 }
 

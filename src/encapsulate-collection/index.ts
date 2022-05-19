@@ -11,49 +11,49 @@ export type IPerson = {
 }
 
 class Course {
-  #data: ICourse
+  private _data: ICourse
   constructor(data: ICourse) {
-    this.#data = data
+    this._data = data
   }
   get rawData() {
-    return R.clone(this.#data)
+    return R.clone(this._data)
   }
   get isAdvanced() {
-    return this.#data.isAdvanced
+    return this._data.isAdvanced
   }
   get name() {
-    return this.#data.name
+    return this._data.name
   }
   set isAdvanced(newValue) {
-    this.#data.isAdvanced = newValue
+    this._data.isAdvanced = newValue
   }
   set name(newValue) {
-    this.#data.name = newValue
+    this._data.name = newValue
   }
 }
 
 class Person {
-  #data: IPerson
+  private _data: IPerson
   constructor(data: IPerson) {
-    this.#data = data
+    this._data = data
   }
   get rawData() {
-    return R.clone(this.#data)
+    return R.clone(this._data)
   }
   get courses() {
-    return R.clone(this.#data.courses)
+    return R.clone(this._data.courses)
   }
   get name() {
-    return this.#data.name
+    return this._data.name
   }
   set courses(newCourses) {
-    this.#data.courses = R.clone(newCourses)
+    this._data.courses = R.clone(newCourses)
   }
   addCourse(aCourse: ICourse) {
-    this.#data.courses.push(aCourse)
+    this._data.courses.push(aCourse)
   }
   removeCourse({ aCourseName }: { aCourseName: ICourse["name"] }) {
-    this.#data.courses = this.#data.courses.filter((course) => course.name !== aCourseName)
+    this._data.courses = this._data.courses.filter((course) => course.name !== aCourseName)
   }
 }
 

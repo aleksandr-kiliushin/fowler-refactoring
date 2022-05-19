@@ -6,25 +6,25 @@ type IOrganization = {
 }
 
 class Organization {
-  #countryId: IOrganization["countryId"]
-  #name: IOrganization["name"]
+  private _countryId: IOrganization["countryId"]
+  private _name: IOrganization["name"]
   constructor(anOrganization: IOrganization) {
     const { countryId, name } = R.clone(anOrganization)
 
-    this.#countryId = countryId
-    this.#name = name
+    this._countryId = countryId
+    this._name = name
   }
   get countryId() {
-    return this.#countryId
+    return this._countryId
   }
   set countryId(newCountryId: IOrganization["countryId"]) {
-    this.#countryId = newCountryId
+    this._countryId = newCountryId
   }
   get name() {
-    return this.#name
+    return this._name
   }
   set name(newName: IOrganization["name"]) {
-    this.#name = newName
+    this._name = newName
   }
 }
 
