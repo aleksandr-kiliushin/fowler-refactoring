@@ -1,4 +1,4 @@
-import produce, { Immutable } from "immer"
+import R from "ramda"
 
 type Customer = {
   id: number
@@ -32,8 +32,8 @@ class Customers {
   constructor(data: ICustomers) {
     this.#data = data
   }
-  get rawData(): Immutable<ICustomers> {
-    return produce(this.#data, () => {})
+  get rawData() {
+    return R.clone(this.#data)
   }
   getUsage({
     customerId,
