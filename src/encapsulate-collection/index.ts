@@ -46,6 +46,12 @@ class Person {
   get name() {
     return this.#data.name
   }
+  addCourse(aCourse: ICourse) {
+    this.#data.courses.push(aCourse)
+  }
+  removeCourse({ aCourseName }: { aCourseName: ICourse["name"] }) {
+    this.#data.courses = this.#data.courses.filter((course) => course.name !== aCourseName)
+  }
 }
 
 export { Course, Person }

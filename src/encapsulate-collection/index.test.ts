@@ -36,5 +36,16 @@ describe("Person and Course.", () => {
     // Does not have an effect because we mutate a copy.
     aPerson.courses.push({ isAdvanced: true, name: "JavaScript" })
     expect(aPerson.courses).toEqual<IPerson["courses"]>([])
+
+    aPerson.addCourse({ isAdvanced: true, name: "Angular" })
+    expect(aPerson.courses).toEqual<IPerson["courses"]>([{ isAdvanced: true, name: "Angular" }])
+    aPerson.addCourse({ isAdvanced: false, name: "React" })
+    expect(aPerson.courses).toEqual<IPerson["courses"]>([
+      { isAdvanced: true, name: "Angular" },
+      { isAdvanced: false, name: "React" },
+    ])
+
+    aPerson.removeCourse({ aCourseName: "React" })
+    expect(aPerson.courses).toEqual<IPerson["courses"]>([{ isAdvanced: true, name: "Angular" }])
   })
 })
