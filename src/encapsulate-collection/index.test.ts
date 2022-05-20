@@ -9,6 +9,7 @@ describe("Person and Course.", () => {
     expect(getCourse().name).toEqual<ICourse["name"]>("React")
 
     expect(() => {
+      // @ts-ignore (an intentional error).
       getCourse().rawData = { isAdvanced: true, name: "Angular" }
     }).toThrowError()
 
