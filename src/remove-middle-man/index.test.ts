@@ -1,4 +1,4 @@
-import { Department, getPerson, IDepartment, IPerson } from "./index"
+import { getPerson, IDepartment, IPerson } from "./index"
 
 describe("A person and their department manager.", () => {
   test("A person department manager is read correctly.", () => {

@@ -3,7 +3,7 @@ export type IDepartment = {
   manager: Person
 }
 
-export class Department {
+class Department {
   private _data: IDepartment
   constructor(data: { code: IDepartment["code"]; managerId: IPerson["id"] }) {
     this._data = {
