@@ -12,17 +12,17 @@ type Person = {
 const composePersonHtml = ({ aPerson }: { aPerson: Person }) => {
   const result = []
   result.push(`<p>${aPerson.name}</p>`)
-  result.push(`<p>title: ${aPerson.photo.title}</p>`)
   result.push(emitPhotoData({ aPhoto: aPerson.photo }))
   return result.join("\n")
 }
 
 const composePhotoHtml = ({ aPhoto }: { aPhoto: Photo }) => {
-  return ["<div>", `<p>title: ${aPhoto.title}</p>`, emitPhotoData({ aPhoto }), "</div>"].join("\n")
+  return ["<div>", emitPhotoData({ aPhoto }), "</div>"].join("\n")
 }
 
 const emitPhotoData = ({ aPhoto }: { aPhoto: Photo }) => {
   const result = []
+  result.push(`<p>title: ${aPhoto.title}</p>`)
   result.push(`<p>location: ${aPhoto.location}</p>`)
   result.push(`<p>date: ${aPhoto.date.toDateString()}</p>`)
   return result.join("\n")
