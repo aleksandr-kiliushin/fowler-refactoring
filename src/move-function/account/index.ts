@@ -1,9 +1,7 @@
 type AccountData = {
   daysOverdrawn: number
   overdraftCharge: number
-  type: {
-    isPremium: boolean
-  }
+  type: AccountType
 }
 
 class Account {
@@ -19,29 +17,39 @@ class Account {
     return result
   }
   get overdraftCharge() {
-    if (this._data.type.isPremium) {
+    return this._data.type.overdraftCharge({ daysOverdrawn: this._data.daysOverdrawn })
+  }
+}
+
+type AccountTypeData = {
+  isPremium: boolean
+}
+
+class AccountType {
+  private _data: AccountTypeData
+  constructor(data: AccountTypeData) {
+    this._data = data
+  }
+  overdraftCharge({ daysOverdrawn }: { daysOverdrawn: AccountData["daysOverdrawn"] }) {
+    if (this._data.isPremium) {
       const baseCharge = 10
-      if (this._data.daysOverdrawn <= 7) return baseCharge
-      return baseCharge + (this._data.daysOverdrawn - 7) * 0.85
+      if (daysOverdrawn <= 7) return baseCharge
+      return baseCharge + (daysOverdrawn - 7) * 0.85
     }
-    return this._data.daysOverdrawn * 1.75
+    return daysOverdrawn * 1.75
   }
 }
 
 const account1 = new Account({
   daysOverdrawn: 12,
   overdraftCharge: 123,
-  type: {
-    isPremium: true,
-  },
+  type: new AccountType({ isPremium: true }),
 })
 
 const account2 = new Account({
   daysOverdrawn: 3,
   overdraftCharge: 321,
-  type: {
-    isPremium: false,
-  },
+  type: new AccountType({ isPremium: false }),
 })
 
 export const getAccount1 = (): Account => {
