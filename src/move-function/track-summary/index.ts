@@ -5,9 +5,8 @@ export type Result = {
 }
 
 const trackSummary = ({ points }: { points: unknown[] }): Result => {
-  const totalDistance = calculateTotalDistance({ points })
   const totalTime = calculateTotalTime()
-  const pace = totalTime / 60 / totalDistance
+  const pace = totalTime / 60 / calculateTotalDistance({ points })
   return {
     time: totalTime,
     distance: calculateTotalDistance({ points }),
