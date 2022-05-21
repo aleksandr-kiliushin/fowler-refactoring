@@ -9,7 +9,7 @@ type Person = {
   photo: Photo
 }
 
-const getPersonHtml = ({ aPerson }: { aPerson: Person }) => {
+const composePersonHtml = ({ aPerson }: { aPerson: Person }) => {
   const result = []
   result.push(`<p>${aPerson.name}</p>`)
   result.push(`<p>title: ${aPerson.photo.title}</p>`)
@@ -17,7 +17,7 @@ const getPersonHtml = ({ aPerson }: { aPerson: Person }) => {
   return result.join("\n")
 }
 
-const getPhotoHtml = ({ aPhoto }: { aPhoto: Photo }) => {
+const composePhotoHtml = ({ aPhoto }: { aPhoto: Photo }) => {
   return ["<div>", `<p>title: ${aPhoto.title}</p>`, emitPhotoData({ aPhoto }), "</div>"].join("\n")
 }
 
@@ -30,16 +30,16 @@ const emitPhotoData = ({ aPhoto }: { aPhoto: Photo }) => {
 
 const aPhoto = { date: new Date(10000000), location: "Miami", title: "Miami beach" }
 
-const aPersonHtml = getPersonHtml({
+const aPersonHtml = composePersonHtml({
   aPerson: { name: "John", photo: aPhoto },
 })
 
-const aPhotoHtml = getPhotoHtml({ aPhoto })
+const aPhotoHtml = composePhotoHtml({ aPhoto })
 
-export const queryPersonHtml = () => {
+export const getPersonHtml = () => {
   return aPersonHtml
 }
 
-export const queryPhotoHtml = () => {
+export const getPhotoHtml = () => {
   return aPhotoHtml
 }
