@@ -1,4 +1,5 @@
 type CustomerContractData = {
+  discountRate: number
   startDate: Date
 }
 
@@ -7,28 +8,35 @@ class CustomerContract {
   constructor(data: CustomerContractData) {
     this._data = data
   }
+  get discountRate() {
+    return this._data.discountRate
+  }
+  set discountRate(newValue) {
+    this._data.discountRate = newValue
+  }
 }
 
 type CustomerData = {
   contract: CustomerContract
-  discountRate: number
   name: string
 }
 
 class Customer {
   private _data: CustomerData
-  constructor(data: { discountRate: CustomerData["discountRate"]; name: CustomerData["name"] }) {
+  constructor(data: {
+    discountRate: CustomerContractData["discountRate"]
+    name: CustomerData["name"]
+  }) {
     this._data = {
-      contract: new CustomerContract({ startDate: new Date() }),
-      discountRate: data.discountRate,
+      contract: new CustomerContract({ discountRate: data.discountRate, startDate: new Date() }),
       name: data.name,
     }
   }
-  get discountRate() {
-    return this._data.discountRate
+  get contract() {
+    return this._data.contract
   }
   becomePreffered() {
-    this._data.discountRate += 0.03
+    this._data.contract.discountRate += 0.03
   }
 }
 
