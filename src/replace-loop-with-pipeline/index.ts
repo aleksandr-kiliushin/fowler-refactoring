@@ -7,25 +7,17 @@ Chennai, India, +91 44 660 44766`
 
 export type OfficeAcquiredData = {
   city: string
-  phone: string
+  phoneNumber: string
 }
 
 const acquireData = ({ officesData }: { officesData: string }): OfficeAcquiredData[] => {
   const lines = officesData.split("\n")
-  let firstLine = true
-  const result = []
-  for (const line of lines) {
-    if (firstLine) {
-      firstLine = false
-      continue
-    }
-    if (line.trim() === "") continue
-    const record = line.split(",")
-    if (record[1].trim() === "India") {
-      result.push({ city: record[0].trim(), phone: record[2].trim() })
-    }
-  }
-  return result
+  return lines
+    .slice(1)
+    .filter((line) => line.trim() !== "")
+    .map((line) => line.split(", "))
+    .filter(([_, country]) => country === "India")
+    .map(([city, _, phoneNumber]) => ({ city, phoneNumber }))
 }
 
 const indiaOfficesData = acquireData({ officesData })
