@@ -13,8 +13,10 @@ const composePersonHtml = ({ aPerson }: { aPerson: Person }) => {
   let result = ""
   result += `<p>${aPerson.name}</p>\n`
   result += composePhotoHtml({ aPhoto: aPerson.photo })
+  result += `<p>location: ${aPhoto.location} (composePersonHtml)</p>\n`
   return result
 }
+
 const composeOldPhotosHtml = ({ photos }: { photos: Photo[] }) => {
   let result = ""
 
@@ -23,6 +25,7 @@ const composeOldPhotosHtml = ({ photos }: { photos: Photo[] }) => {
     .forEach((aPhoto) => {
       result += "<div>\n"
       result += composePhotoHtml({ aPhoto })
+      result += `<p>location: ${aPhoto.location} (composeOldPhotosHtml)</p>\n`
       result += "</div>\n"
     })
 
@@ -33,7 +36,6 @@ const composePhotoHtml = ({ aPhoto }: { aPhoto: Photo }) => {
   let result = ""
   result += `<p>title: ${aPhoto.title}</p>\n`
   result += `<p>date: ${aPhoto.date.toDateString()}</p>\n`
-  result += `<p>location: ${aPhoto.location}</p>\n`
   return result
 }
 

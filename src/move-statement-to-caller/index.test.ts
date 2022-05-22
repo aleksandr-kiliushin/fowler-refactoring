@@ -5,7 +5,7 @@ describe("Person and old photos HTML.", () => {
     expect(getPersonHtml()).toEqual(`<p>John</p>
 <p>title: Trip</p>
 <p>date: Thu May 21 1970</p>
-<p>location: New York</p>
+<p>location: New York (composePersonHtml)</p>
 `)
   })
 
@@ -13,17 +13,17 @@ describe("Person and old photos HTML.", () => {
     expect(getOldPhotosHtml()).toEqual(`<div>
 <p>title: Trip</p>
 <p>date: Thu May 21 1970</p>
-<p>location: New York</p>
+<p>location: New York (composeOldPhotosHtml)</p>
 </div>
 <div>
 <p>title: Trip</p>
 <p>date: Thu May 21 1970</p>
-<p>location: New York</p>
+<p>location: New York (composeOldPhotosHtml)</p>
 </div>
 <div>
 <p>title: Trip</p>
 <p>date: Thu May 21 1970</p>
-<p>location: New York</p>
+<p>location: New York (composeOldPhotosHtml)</p>
 </div>
 `)
   })
