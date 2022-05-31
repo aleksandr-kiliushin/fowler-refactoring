@@ -9,7 +9,8 @@
     "dev": "rm -rf dist && tsc -w",
     "prepare": "husky install",
     "start": "node ./dist/index.js",
-    "test": "jest"
+    "test": "jest",
+    "test:only-changed": "jest --onlyChanged"
   },
   "keywords": [],
   "author": "",
