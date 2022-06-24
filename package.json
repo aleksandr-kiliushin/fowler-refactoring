@@ -6,11 +6,14 @@
     "build": "rm -rf dist && tsc",
     "build-and-start": "rm -rf dist && tsc && node ./dist/index.js",
     "check-types": "tsc --noEmit",
+    "check-types:watch": "tsc --noEmit --watch",
     "dev": "rm -rf dist && tsc -w",
     "prepare": "husky install",
     "start": "node ./dist/index.js",
     "test": "jest",
-    "test:only-changed": "jest --onlyChanged"
+    "test:only-changed": "jest --onlyChanged",
+    "test:only-changed:watch": "jest --onlyChanged --watch",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "",
